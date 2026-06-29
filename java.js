@@ -1,3 +1,4 @@
+
 document.querySelector("#dish-form").addEventListener("submit", generateDish);
 
 function generateDish(event) {
@@ -11,13 +12,10 @@ function generateDish(event) {
 
   let prompt = `Create a German–French fusion cuisine idea based on these instructions: ${instructions}. Include a dish name, description, and optional recipe.`;
 
-  let apiUrl = "https://api.shecodes.io/ai/v1/generate";
+  let apiUrl = `https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&key=${apiKey}`;
 
   axios
-    .post(apiUrl, {
-      prompt: prompt,
-      key: apiKey,
-    })
+    .get(apiUrl)
     .then((response) => {
       resultDiv.innerHTML = response.data.answer;
     })
